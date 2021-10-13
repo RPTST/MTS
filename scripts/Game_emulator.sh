@@ -28,3 +28,5 @@ flatpak install flathub com.dosbox_x.DOSBox-X
 flatpak install flathub org.scummvm.ScummVM
 # Install SNES emulator
 flatpak install flathub com.snes9x.Snes9x
+# benchmark
+flatpak install flathub com.basemark.BasemarkGPU
