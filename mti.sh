@@ -155,14 +155,39 @@ do_mti() {
 ################################################ Install Terminal Apps
 
 do_terminal() {
-  {
-  i=1
-  while read -r line; do
-      i=$(( $i + 1 ))
-      echo $i
-  done < <(apt-get update)
-} | whiptail --title "Progress" --gauge "Please wait while updating" 6 60 0
-apt-get install bash-completion bc curl cmatrix elinks feh file-roller gnome-keyring gtop hardinfo htop inxi jq jshon neofetch ntp numlockx openssh rsync speedtest-cli tlp unrar unzip wget zenity zip bpytop bmon wavemon iftop ipcalc hexcurse exa hping3 arping lshw fping chkrootkit ioping trash-cli ranger mc whowatch lsof nethogs fdupes stress ccze tilde nmap original-awk gawk tshark saidar xlsx2csv pwgen libcrack2 tasksel htop lynx -y
+function terminalutils {
+  echo "running terminal function"
+  sudo apt-get install bash-completion bc curl cmatrix elinks feh file-roller gnome-keyring gtop hardinfo htop inxi jq jshon neofetch ntp numlockx openssh rsync speedtest-cli tlp wget zenity bpytop bmon wavemon iftop ipcalc hexcurse exa hping3 arping lshw fping chkrootkit ioping trash-cli ranger mc whowatch lsof nethogs fdupes stress ccze tilde nmap original-awk gawk tshark saidar xlsx2csv pwgen libcrack2 tasksel htop lynx -y
+}
+
+function archive {
+ echo "running archive function"
+ sudo apt-get install unrar unzip zip p7zip
+}
+
+function javautils {
+ echo "running Java function"
+ sudo apt-get install default-jre default-jdk
+}
+
+whiptail --title "Apps" --checklist --separate-output "Choose:" 20 78 15 \
+"Terminal Utils" "" on \
+"Archive Utils" "" off \
+"Java Utils" "" off 2>results
+
+while read choice
+do
+        case $choice in
+                Terminal) terminalutils
+                ;;
+                Archive) archive
+                ;;
+                Java) javautils
+                ;;
+                *)
+                ;;
+        esac
+done < results
 }
 
 ################################################ Install Apps
