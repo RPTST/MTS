@@ -14,3 +14,5 @@ flatpak install flathub org.libretrainsim.Libre-TrainSim
 flatpak install flathub com.realm667.Wolfenstein_Blade_of_Agony
 # install Steam
 flatpak install flathub com.valvesoftware.Steam
+# benchmark
+flatpak install flathub com.basemark.BasemarkGPU
