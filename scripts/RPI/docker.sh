@@ -3,7 +3,7 @@
 # Update your system
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
 
 # Install Docker
 
