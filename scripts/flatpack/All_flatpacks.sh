@@ -115,6 +115,8 @@ flatpak install flathub com.nextcloud.desktopclient.nextcloud
 flatpak install flathub org.raspberrypi.rpi-imager
 flatpak install flathub com.simplenote.Simplenote
 
+Store
+flatpak install flathub io.github.prateekmedia.appimagepool
 
 # Install VM manager
 flatpak install flathub org.gnome.Boxes
