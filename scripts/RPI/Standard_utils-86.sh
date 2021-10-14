@@ -102,4 +102,7 @@ wget -P ~/projects https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd-
 sudo dpkg -i lsd-musl_0.20.1_arm64.deb
 sed -i "s/ls --color=auto/lsd/" $HOME/.bashrc
 #
-
+wget https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_arm64.tgz
+mkdir -p ~/.local/bin
+cp gotop ~/.local/bin
+#
