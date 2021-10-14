@@ -1,4 +1,6 @@
-# slow-youtube
+#!/bin/bash
+#
+# slow youtube
 sudo apt install python3 python3-pip mpv firefox rpi-chromium-mods
 python3 -m pip install --user --upgrade youtube-dl
 mkdir ~/projects/
