@@ -31,3 +31,8 @@ echo "user_pref("browser.startup.homepage", "https://www.startpage.com");" >> /e
 cd ~/projects/
 wget http://archive.raspberrypi.org/debian/pool/main/w/widevine/libwidevinecdm0_4.10.2252.0-1_armhf.deb
 dpkg -i libwidevinecdm0_4.10.2252.0-1_armhf.deb
+#
+echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee "/etc/apt/sources.list.d/streamlink.list"
+sudo apt update
+sudo apt -t buster-backports install streamlink
+#
