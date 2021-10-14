@@ -32,3 +32,8 @@ cd ~/projects/synth-shell/
 chmod +x setup.sh
 # cd $HOME/projects/synth-shell
 echo "i u n Y n n n"| ./setup.sh
+#
+wget -P ~/projects https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd-musl_0.20.1_arm64.deb
+sudo dpkg -i lsd-musl_0.20.1_arm64.deb
+sed -i "s/ls --color=auto/lsd/" $HOME/.bashrc
+#
