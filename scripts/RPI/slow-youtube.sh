@@ -25,3 +25,4 @@ unzip aecec67f-0d10-4fa7-b7c7-609a2db280cf.zip
 xdg-mime default mpv-handler.desktop x-scheme-handler/mpv
 
 # And that's it. Open a video on YouTube and you should see a new floating button in the bottom left-hand side of the website. Click it and the web browser should ask you if you want to allow the site to open mpv links:
+echo "user_pref("browser.startup.homepage", "https://www.startpage.com");" >> /etc/xul-ext/ubufox.js
