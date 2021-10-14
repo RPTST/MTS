@@ -13,6 +13,8 @@ cd ~/projects/
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
 sudo python2 get-pip.py
 #
+python3 -m pip install --upgrade --user s-tui
+#
 # install vulkan & dependencies
 sudo apt install libxcb-randr0-dev libxrandr-dev
 sudo apt install libxcb-xinerama0-dev libxinerama-dev libxcursor-dev
