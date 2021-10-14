@@ -16,7 +16,7 @@ sudo python2 get-pip.py
 #
 # Install ps-mem to see what your memory is doing
 sudo wget -O /usr/local/bin/ps_mem https://raw.githubusercontent.com/pixelb/ps_mem/master/ps_mem.py
-chmod +x /usr/local/bin/ps_mem
+sudo chmod +x /usr/local/bin/ps_mem
 tee -a ~/.bashrc <<< "export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:bin:/usr/games:/usr/local/games""
 tee -a ~/.bashrc <<< "export PATH=$HOME/.local/bin:$HOME/.local/usr/bin:$PATH"
 sudo ps_mem
