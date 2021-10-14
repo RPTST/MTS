@@ -1,3 +1,5 @@
+#!/bin/bash
+#
 # remove the old dphys version
 sudo /etc/init.d/dphys-swapfile stop
 sudo apt-get remove --purge dphys-swapfile
