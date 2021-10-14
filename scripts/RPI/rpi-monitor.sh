@@ -1,3 +1,5 @@
+#!/bin/bash
+#
 # Install RPI monitor
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 2C0D3C0F
 sudo wget http://goo.gl/vewCLL -O /etc/apt/sources.list.d/rpimonitor.list
