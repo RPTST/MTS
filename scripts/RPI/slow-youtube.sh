@@ -26,3 +26,8 @@ xdg-mime default mpv-handler.desktop x-scheme-handler/mpv
 
 # And that's it. Open a video on YouTube and you should see a new floating button in the bottom left-hand side of the website. Click it and the web browser should ask you if you want to allow the site to open mpv links:
 echo "user_pref("browser.startup.homepage", "https://www.startpage.com");" >> /etc/xul-ext/ubufox.js
+
+# Chrome update for native Widevine
+cd ~/projects/
+wget http://archive.raspberrypi.org/debian/pool/main/w/widevine/libwidevinecdm0_4.10.2252.0-1_armhf.deb
+dpkg -i libwidevinecdm0_4.10.2252.0-1_armhf.deb
