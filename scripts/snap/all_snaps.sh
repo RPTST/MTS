@@ -94,8 +94,9 @@ sudo snap install micropython
 sudo snap install sublime-merge --classic
 sudo snap install polar-bookshelf
 sudo snap install stickynotes
-
-
-
-
+sudo snap install opencorsairlink
+sudo snap install docker
+sudo snap install grafana
+sudo snap install influxdb --edge
+sudo snap install influx --edge
 
