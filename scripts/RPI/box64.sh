@@ -1,3 +1,5 @@
+#!/bin/bash
+#
 # Install box64
 sudo apt update && sudo apt upgrade -y
 sudo apt install screen dos2unix dosbox
