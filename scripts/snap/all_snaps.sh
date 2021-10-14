@@ -93,3 +93,9 @@ sudo snap install vim-editor --beta
 sudo snap install micropython
 sudo snap install sublime-merge --classic
 sudo snap install polar-bookshelf
+sudo snap install stickynotes
+
+
+
+
+
