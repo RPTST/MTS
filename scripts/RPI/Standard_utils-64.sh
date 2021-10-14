@@ -6,7 +6,7 @@ sudo apt update && sudo apt upgrade -y
 sudo rpi-update
 #
 # Standard terminal utils install
-sudo apt install -y curl git ranger mc whowatch lsof nethogs fdupes bashtop stress ccze tilde nmap original-awk gawk curl git wget zip unzip unrar-free trash-cli ioping chkrootkit fping lshw arping hping3 exa hexcurse ipcalc iftop wavemon bmon build-essential make cmake gcc g++ python3 python3-pip python2 tshark saidar xlsx2csv pwgen libcrack2 openjdk-11-jdk openjdk-11-jre
+sudo apt install -y curl git ranger mc whowatch lsof nethogs fdupes bashtop  cheese steamlink ntfs-3g openssh openssh-server ffmpeg ettercap-graphical yersinia stress ccze tilde nmap original-awk gawk curl git wget zip unzip unrar-free trash-cli ioping chkrootkit fping lshw arping hping3 exa hexcurse ipcalc iftop wavemon bmon build-essential make cmake gcc g++ python3 python3-pip python2 tshark saidar xlsx2csv pwgen libcrack2 openjdk-11-jdk openjdk-11-jre
 #
 # Python2 pip install
 mkdir ~/projects/
