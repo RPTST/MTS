@@ -2,6 +2,7 @@
 #
 sudo apt update
 sudo apt upgrade -y
-sudo apt install flatpak -y
+sudo add-apt-repository ppa:alexlarsson/flatpak
+sudo apt update && sudo apt install flatpak -y
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #
