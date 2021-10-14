@@ -14,6 +14,8 @@ cd ~/projects/
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
 sudo python2 get-pip.py
 #
+python3 -m pip install --upgrade --user s-tui
+#
 # Install ps-mem to see what your memory is doing
 sudo wget -O /usr/local/bin/ps_mem https://raw.githubusercontent.com/pixelb/ps_mem/master/ps_mem.py
 sudo chmod +x /usr/local/bin/ps_mem
