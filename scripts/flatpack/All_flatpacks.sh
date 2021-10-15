@@ -115,7 +115,7 @@ flatpak install flathub com.nextcloud.desktopclient.nextcloud
 flatpak install flathub org.raspberrypi.rpi-imager
 flatpak install flathub com.simplenote.Simplenote
 
-Store
+#Store
 flatpak install flathub io.github.prateekmedia.appimagepool
 
 # Install VM manager
@@ -150,6 +150,7 @@ flatpak install flathub com.rawtherapee.RawTherapee
 flatpak install flathub org.gnome.Shotwell
 flatpak install flathub com.hamrick.VueScan
 flatpak install flathub io.github.JaGoLi.ytdl_gui
+flatpak install flathub im.kaidan.kaida
 
 # Install Developer Tools 
 flatpak install flathub com.vscodium.codium
@@ -160,6 +161,7 @@ flatpak install flathub com.notepadqq.Notepadqq
 flatpak install flathub com.sublimetext.three
 flatpak install flathub io.atom.Atom
 flatpak install flathub org.vim.Vim
+flatpak install flathub org.librepcb.LibrePCB
 
 # Install Chat
 flatpak install flathub com.slack.Slack
