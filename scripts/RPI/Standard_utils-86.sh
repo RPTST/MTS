@@ -233,3 +233,4 @@ sudo apt install -y xrdp
 sudo systemctl status xrdp
 sudo adduser xrdp ssl-cert
 #
+sudo apt-get install epiphany midori 
