@@ -125,19 +125,19 @@ cp gotop ~/.local/bin
 gotop
 #
 #
-#cd ~/projects/
+cd ~/projects/
 # remove the old dphys version
-#sudo /etc/init.d/dphys-swapfile stop
-#sudo apt-get remove --purge dphys-swapfile
+sudo /etc/init.d/dphys-swapfile stop
+sudo apt-get remove --purge dphys-swapfile
 # install zram
-#sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh
+sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/novaspirit/rpi_zram/master/zram.sh
 # set autoload
 # sudo sed -i -e '$i \ /usr/bin/zram.sh &\n' /etc/rc.local
 #sudo sed -i -e '$ i\/usr/bin/zram.sh &' /etc/rc.local
-#sed -i '18i /usr/bin/zram.sh &' /etc/rc.local
+sudo sed -i '18i /usr/bin/zram.sh &' /etc/rc.local
 # Make the script executable
-#sudo chmod +x /usr/bin/zram.sh
-#sudo nano /usr/bin/zram.sh
+sudo chmod +x /usr/bin/zram.sh
+sudo nano /usr/bin/zram.sh
 #
 # Desktop enviroment install
 sudo apt install -y xserver-xorg xfce4 xfce4-goodies
@@ -234,3 +234,17 @@ sudo systemctl status xrdp
 sudo adduser xrdp ssl-cert
 #
 sudo apt-get install epiphany midori 
+#
+# Log2Ram
+#
+cd ~/
+sudo apt install rsync
+wget https://github.com/azlux/log2ram/archive/master.tar.gz -O log2ram.tar.gz
+tar xf log2ram.tar.gz
+cd /home/pi/log2ram-master
+sudo ./install.sh
+filenamess="/etc/log2ram.conf"
+searches="SIZE=40M"
+replacess="SIZE=80M"
+sed -i "s/$searches/$replacess/" $HOME/$filenamess
+sudo reboot
