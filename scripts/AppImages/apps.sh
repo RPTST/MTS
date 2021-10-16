@@ -1,7 +1,10 @@
 #!/bin/bash
 
+sudo apt install software-properties-common
 sudo add-apt-repository ppa:appimagelauncher-team/stable
 sudo apt-get install appimagelauncher
+wget https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_armhf.deb
+dpkg -i appimagelauncher_2.2.0-travis995.0f91801.bionic_armhf.deb
 
 mkdir ~/Apps
 cd ~/Apps
