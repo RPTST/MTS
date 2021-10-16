@@ -84,7 +84,7 @@ cd ~/projects/
 sudo wget -O /usr/local/bin/ps_mem https://raw.githubusercontent.com/pixelb/ps_mem/master/ps_mem.py
 tee -a ~/.bashrc <<< "export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:bin:/usr/games:/usr/local/games""
 tee -a ~/.bashrc <<< "export PATH=$HOME/.local/bin:$HOME/.local/usr/bin:$PATH"
-chmod +x /usr/local/bin/ps_mem
+sudo chmod +x /usr/local/bin/ps_mem
 sudo ps_mem
 #
 # Install bat a more IDE color style cat command
