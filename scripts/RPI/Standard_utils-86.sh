@@ -229,3 +229,7 @@ echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/Raspbi
 curl -fsSL https://download.opensuse.org/repositories/home:manuelschneid3r/Raspbian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_manuelschneid3r.gpg > /dev/null
 sudo apt update
 sudo apt install -y albert
+sudo apt install -y xrdp
+sudo systemctl status xrdp
+sudo adduser xrdp ssl-cert
+#
