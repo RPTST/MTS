@@ -233,7 +233,10 @@ sudo apt install -y xrdp
 sudo systemctl status xrdp
 sudo adduser xrdp ssl-cert
 #
-sudo apt-get install epiphany midori 
+cd ~/projects/
+wget https://github.com/VSCodium/vscodium/releases/download/1.61.1/codium_1.61.1-1634257234_armhf.deb
+sudo dpkg -i codium_1.61.1-1634257234_armhf.deb
+sudo apt-get -y install audacious mpv vlc rawtherapee arc-theme filezilla easyeffects rhythmbox simplenote discord epiphany-browser midori synaptic
 #
 # Log2Ram
 #
