@@ -1,3 +1,4 @@
+#!/bin/bash
 # Update system
 #
 sudo apt update && sudo apt upgrade -y
@@ -75,7 +76,7 @@ sudo ninja -C build install
     make -j$(nproc)
 #
 #    Install bpytop (a much better and more colorful htop command)
-pip3 install bpytop
+pip3 install bpytop -y
 #
 # Install ps-mem to see what your memory is doing
 mkdir ~/projects/
@@ -157,6 +158,7 @@ sudo apt install wget curl thunar mousepad lxterminal default-jdk default-jre ba
 #
 # LSD for terminal
 #
+wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd-0.20.1-arm-unknown-linux-gnueabihf.tar.gz
 cargo install lsd
 filename=".bashrc"
 search="ls --color=auto"
