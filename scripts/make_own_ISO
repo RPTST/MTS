@@ -107,7 +107,7 @@ sudo mv filesystem.squashfs ISO/casper/
 sudo chroot squashfs-root dpkg-query -W --showformat='${Package} ${Version}\n' | sudo tee ISO/casper/filesystem.manifest
 sudo cp -v ISO/casper/filesystem.manifest ISO/casper/filesystem.manifest-desktop
 
-nano tmp.sh
+nano ~/Projects/Live/Build\ Items/tmp.sh
 #!/bin/bash
 REMOVE='ubiquity ubiquity-frontend-gtk ubiquity-frontend-kde casper lupin-casper live-initramfs user-setup discover1 xresprobe os-prober libdebian-installer4'
    for i in $REMOVE
@@ -116,10 +116,10 @@ REMOVE='ubiquity ubiquity-frontend-gtk ubiquity-frontend-kde casper lupin-casper
 
    done
 <Ctrl-x>
-bash tmp.sh
+bash ~/Projects/Live/Build\ Items/tmp.sh
 
 sudo -s 
-(cd ISO && find . -type f - print0 | xarg -0 md5sum | grep -v "\./md5sum.txt" > SHA256SUMS)
+(cd ISO && find . -type f -print0 | xargs -0 md5sum | grep -v "\./md5sum.txt" > SHA256SUMS)
 exit
 cd ISO/ && sudo mkisofs -D -r -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o ../RPTST-LIVE.iso .
 
