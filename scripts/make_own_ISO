@@ -3,14 +3,15 @@ mount mini.iso
 #copy all files and folders
 mkdir -p ~/Projects/Live/Build Enviorment/ISO
 mkdir -p ~/Projects/Live/Build Items
-cd to CD-rom
-cp * ~/Projects/Live/Build Enviorment
-cd ~/Projects/Live/Build Enviorment/ISO
+cd to CD-rom (cd /mnt/media/CDROM)
+cp * ~/Projects/Live/Build\ Enviorment/
+cd ~/Projects/Live/Build\ Enviorment/ISO
 sudo mv filesystem.squashfs ../../
 sudo apt -y install squashfs-tools genisoimage syslinux xnest
 Xnest -ac :10 -geometry 1920x1080 &
 sudo unsquashfs filesystem.squashfs
-cd squashfs-root/ 
+sudo mv filesystem.squashfs
+cd ~/Projects/Live/Build Enviorment/ISO/squashfs-root/ 
 sudo mount -t proc /proc proc/
 sudo mount -t sysfs /sys/ sys/
 sudo mount -o bind /dev dev/
@@ -72,14 +73,30 @@ apt install oracle-java17-installer --install-recommends
 echo oracle-java17-installer shared/accepted-oracle-license-v1-3 select true | /usr/bin/debconf-set-selections
 
 
-enlightenment_start
+pekwm
+<Ctrl-x>
 synaptic
 <remove used programs>
+apt purge --auto-remove pekwm
+apt reinstall enlightenment slim
+
+apt autoremove --purge
+apt autoclean
+rm -rf/tmp/*
+
 
 rm /etc/resolv.conf
-sudo umount -lf proc proc/
-sudo umount -lf sysfs sys/
-sudo umount -lf bind dev/
+umount -lf dev/
+umount -lf sys/
+umount -lf proc/
+exit
+sudo umount -lf dev/
+sudo umount -lf proc/
+sudo umount -lf sys/
+
+cd ~/Projects/Live/Build\ Enviorment/
+sudo mksquashfs-root/ filesystem.squashfs -comp xz
+
 sudo chmod 644 ISO/casper/filesystem.size
 printf $(sudo du -sx -block-size=1 | squashfs-root | cut -f1) > ISO/casper/filesystem.size
 sudo chmod 444 ISO/casper/filesystem.size
