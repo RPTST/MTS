@@ -1,3 +1,6 @@
+#
+# Making your own ISO
+#
 cp mini.iso to ~/Download
 mount mini.iso
 #copy all files and folders
