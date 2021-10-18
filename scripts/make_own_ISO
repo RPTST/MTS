@@ -1,12 +1,20 @@
 cp mini.iso to ~/Download
 mount mini.iso
 #copy all files and folders
+mkdir -p ~/Projects/Live/Build Enviorment/ISO
+mkdir -p ~/Projects/Live/Build Items
+cd to CD-rom
 cp * ~/Projects/Live/Build Enviorment
-cd ~/Projects/Live/Build Enviorment/squadhfs-root/
+cd ~/Projects/Live/Build Enviorment/ISO
+sudo mv filesystem.squashfs ../../
+sudo apt -y install squashfs-tools genisoimage syslinux xnest
 Xnest -ac :10 -geometry 1920x1080 &
-cd squashfs-root/ && sudo mount -t proc /proc proc/
+sudo unsquashfs filesystem.squashfs
+cd squashfs-root/ 
+sudo mount -t proc /proc proc/
 sudo mount -t sysfs /sys/ sys/
 sudo mount -o bind /dev dev/
+sudo cp /etc/resolv.conf etc/
 sudo chroot . bash
 
 export HOME=/root
@@ -16,6 +24,8 @@ export LC_ALL=C
 nano /etc/apt/sources.list
 <update LIST>
 <Ctrl-x>
+
+rm /etc/resolv.conf
 
 apt update
 apt install -y xinit xserver-xorg xorg aptitude synaptic tasksel apt-xapian-index slim enlightenment terminology midori pulseaudio alsa-base pavucontrol
@@ -51,7 +61,7 @@ enlightenment_start
 synaptic
 <remove used programs>
 
-
+rm /etc/resolv.conf
 sudo umount -lf proc proc/
 sudo umount -lf sysfs sys/
 sudo umount -lf bind dev/
@@ -63,6 +73,7 @@ sudo chroot squashfs-root dpkg-query -W --showformat='${Package} ${Version}\n' |
 sudo cp -v ISO/casper/filesystem.manifest ISO/casper/filesystem.manifest-desktop
 
 nano tmp.sh
+#!/bin/bash
 REMOVE='ubiquity ubiquity-frontend-gtk ubiquity-frontend-kde casper lupin-casper live-initramfs user-setup discover1 xresprobe os-prober libdebian-installer4'
    for i in $REMOVE
    do
@@ -70,5 +81,11 @@ REMOVE='ubiquity ubiquity-frontend-gtk ubiquity-frontend-kde casper lupin-casper
 
    done
 <Ctrl-x>
+bash tmp.sh
+
+sudo -s 
+(cd ISO && find . -type f - print0 | xarg -0 md5sum | grep -v "\./md5sum.txt" > SHA256SUMS)
+exit
+cd ISO/ && sudo mkisofs -D -r -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o ../RPTST-LIVE.iso .
 
 Build Items <folder>
