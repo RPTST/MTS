@@ -5,7 +5,7 @@ sudo apt update && sudo apt upgrade -y
 sudo rpi-update
 #
 # Standard terminal utils install
-sudo apt install -y bc curl ninja-build git ranger mc whowatch lsof nethogs fdupes  cheese steamlink ntfs-3g openssh-server ffmpeg ettercap-graphical stress ccze tilde nmap original-awk gawk curl git wget zip unzip unrar-free trash-cli ioping chkrootkit fping lshw arping hping3 exa hexcurse ipcalc iftop wavemon bmon build-essential make cmake gcc g++ python3 python3-pip python2 tshark saidar xlsx2csv pwgen libcrack2 openjdk-11-jdk openjdk-11-jre build-essential make cmake gcc g++ git curl wget htop ninja-build neofetch mosh screen bmon wavemon iftop ipcalc hexcurse exa hping3 arping lshw fping chkrootkit ioping trash-cli ranger mc whowatch lsof nethogs fdupes stress ccze tilde nmap original-awk gawk curl git wget zip unzip unrar-free tshark saidar xlsx2csv docx2txt pwgen libcrack2
+sudo apt install -y bc curl ninja-build git ranger mc whowatch lsof nethogs fdupes ntfs-3g openssh-server ffmpeg ettercap-graphical stress ccze tilde nmap original-awk gawk trash-cli ioping chkrootkit fping lshw arping hping3 exa hexcurse ipcalc iftop wavemon bmon build-essential make cmake python3 python3-pip python2 tshark saidar xlsx2csv pwgen libcrack2 openjdk-11-jdk openjdk-11-jre build-essential make cmake gcc g++ git wget htop neofetch mosh screen bmon wavemon iftop ipcalc hexcurse exa hping3 arping lshw fping chkrootkit ioping stress ccze tilde nmap original-awk gawk wget zip unzip unrar-free tshark saidar xlsx2csv docx2txt pwgen libcrack2
 sudo apt install -y gcc-arm-linux-gnueabihf
 #
 # Python2 pip install
