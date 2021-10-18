@@ -1,0 +1,74 @@
+cp mini.iso to ~/Download
+mount mini.iso
+#copy all files and folders
+cp * ~/Projects/Live/Build Enviorment
+cd ~/Projects/Live/Build Enviorment/squadhfs-root/
+Xnest -ac :10 -geometry 1920x1080 &
+cd squashfs-root/ && sudo mount -t proc /proc proc/
+sudo mount -t sysfs /sys/ sys/
+sudo mount -o bind /dev dev/
+sudo chroot . bash
+
+export HOME=/root
+export DISPLAY=:10
+export LC_ALL=C
+
+nano /etc/apt/sources.list
+<update LIST>
+<Ctrl-x>
+
+apt update
+apt install -y xinit xserver-xorg xorg aptitude synaptic tasksel apt-xapian-index slim enlightenment terminology midori pulseaudio alsa-base pavucontrol
+apt dist-upgrade -y
+apt install -y curl git ranger mc whowatch rsync lsof nethogs bash-completion autojump cargo fdupes bashtop ntfs-3g openssh-client openssh-server ffmpeg ettercap-graphical yersinia stress ccze tilde nmap original-awk gawk curl git wget zip unzip unrar-free trash-cli ioping chkrootkit fping lshw arping hping3 hexcurse ipcalc iftop wavemon bmon build-essential make cmake gcc g++ python3 python3-pip python python2 tshark saidar xlsx2csv pwgen libcrack2 default-jre default-jre
+cd /tmp/
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+python2 get-pip.py
+python get-pip.py
+wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_arm64.deb
+sudo dpkg -i bat_*.deb
+wget -P /tmp https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb
+dpkg -i lsd_0.20.1_amd64.deb
+wget https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_amd64.tgz
+tar -xf gotop_v4.1.2_linux_amd64.tgz
+mv gotop /usr/local/bin/
+pip3 install meson -y
+pip3 install mako -y
+pip3 install bpytop -y
+sudo apt install -y fonts-font-awesome
+add-apt-repository ppa:camel-neeraj/sysmontask
+add-apt-repository ppa:pbek/qownnotes
+add-apt-repository ppa:d-bannon/ppa-tomboy-ng
+apt install sysmontask python3-pip dpkg-dev build-essential debhelper libwebp-dev mosh screen neofetch libgdk-pixbuf2.0-dev meson build-essential darktable celluloid parole pinta krita mypaint gparted gdebi tomboy-ng qownnotessudo
+pip3 install psutil -y
+sudo pip3 install -U psutil -y
+add-apt-repository ppa:linuxuprising/java
+apt install oracle-java17-installer --install-recommends
+echo oracle-java17-installer shared/accepted-oracle-license-v1-3 select true | /usr/bin/debconf-set-selections
+
+
+enlightenment_start
+synaptic
+<remove used programs>
+
+
+sudo umount -lf proc proc/
+sudo umount -lf sysfs sys/
+sudo umount -lf bind dev/
+sudo chmod 644 ISO/casper/filesystem.size
+printf $(sudo du -sx -block-size=1 | squashfs-root | cut -f1) > ISO/casper/filesystem.size
+sudo chmod 444 ISO/casper/filesystem.size
+sudo mv filesystem.squashfs ISO/casper/
+sudo chroot squashfs-root dpkg-query -W --showformat='${Package} ${Version}\n' | sudo tee ISO/casper/filesystem.manifest
+sudo cp -v ISO/casper/filesystem.manifest ISO/casper/filesystem.manifest-desktop
+
+nano tmp.sh
+REMOVE='ubiquity ubiquity-frontend-gtk ubiquity-frontend-kde casper lupin-casper live-initramfs user-setup discover1 xresprobe os-prober libdebian-installer4'
+   for i in $REMOVE
+   do
+	sudo sed -i "/${i}/d" ISO/casper/filesystem.manifest-desktop
+
+   done
+<Ctrl-x>
+
+Build Items <folder>
