@@ -1,3 +1,7 @@
+#!/bin/bash
+#
+#
+#
 DEVTOOLS() {
 clear
 echo "============= "
