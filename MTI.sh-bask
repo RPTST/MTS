@@ -194,9 +194,24 @@ git clone --recursive https://github.com/andresgongora/synth-shell.git
 cd synth-shell/
 chmod +x setup.sh
 echo "i u n Y n n n"| ./setup.sh
+sleep 5
 clear
 echo " "
 echo "fancy shell installed"
+sleep 5
+echo " "
+echo "Installing new ls command"
+clear
+echo " "
+filename=".bashrc"
+search="ls --color=auto"
+replace="lsd"
+wget -P ~/projects https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd-musl_0.20.1_arm64.deb
+dpkg -i lsd-musl_0.20.1_arm64.deb
+sed -i "s/$search/$replace/" $HOME/$filename
+clear
+echo " "
+echo "New ls command installed"
 sleep 3
 clear
 #
