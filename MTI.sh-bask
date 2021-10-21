@@ -31,6 +31,20 @@ echo " "
 echo "Terminal Apps installed"
 sleep 5
 clear
+echo " "
+echo "Installing GoTop App"
+sleep 5
+clear
+echo " "
+wget https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_arm7.tgz -P /tmp/
+tar -xf /tmp/gotop_v4.1.2_linux_arm7.tgz
+mkdir -p /usr/local/bin
+cp /tmp/gotop /usr/local/bin/
+clear
+echo " "
+echo "GoTop App installed"
+sleep 5
+clear
 }
 #
 #
