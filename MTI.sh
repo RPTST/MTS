@@ -248,6 +248,7 @@ echo " "
 echo "New ls command installed"
 sleep 3
 clear
+}
 #
 #
 CATCMDBAT () { 
@@ -270,6 +271,7 @@ echo " "
 echo "New ls command installed"
 sleep 3
 clear
+}
 #
 #
 XRTAFONTS () { 
@@ -305,6 +307,7 @@ echo " "
 echo "New Fonts installed"
 sleep 3
 clear
+}
 #
 #
 LCPURGE () { 
@@ -327,6 +330,7 @@ echo " "
 echo "Locals Purged!"
 sleep 3
 clear
+}
 #
 #
 SYSMONTSK () { 
@@ -350,6 +354,7 @@ echo " "
 echo "Windows Modern System Monitor installed"
 sleep 3
 clear
+}
 #
 #
 LXDEDSKINSTA () { 
@@ -409,6 +414,7 @@ echo " "
 echo "LXDE Desktop + More installed"
 sleep 3
 clear
+}
 #
 #
 # ---------------------------
