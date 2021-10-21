@@ -176,6 +176,31 @@ clear
 }
 #
 #
+FANCYSHELL () { 
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing fancy shell"
+sleep 5
+clear
+echo " "
+mkdir $HOME/projects/
+cd $HOME/projects/
+git clone --recursive https://github.com/andresgongora/synth-shell.git
+cd synth-shell/
+chmod +x setup.sh
+echo "i u n Y n n n"| ./setup.sh
+clear
+echo " "
+echo "fancy shell installed"
+sleep 3
+clear
+#
+#
 # ---------------------------
 # Main Menu
 # ---------------------------
@@ -198,6 +223,7 @@ echo " (g) Install youtube-dl "
 echo " (h) Install Oracle Java "
 echo " (j) Install newest kernel from backports "
 echo "     -- Reboot Required -- "
+echo " (k) Fancy Shell Install "
 echo " "
 echo " (x) Exit "
 echo
@@ -212,6 +238,7 @@ case $choice in
   g|G) YTDLUP;;
   h|H) ORACLE;;
   j|J) BPKERNEL;;
+  j|K) FANCYSHELL;;
   x|X) exit;;
   *) echo "Invalid Answer, Please Try Again";;
 #
