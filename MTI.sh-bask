@@ -216,6 +216,28 @@ sleep 3
 clear
 #
 #
+CATCMDBAT () { 
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing new cat command called bat"
+sleep 5
+clear
+echo " "
+wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd.deb -P /tmp/
+dpkg -i bat_*.deb
+bat /etc/profile
+clear
+echo " "
+echo "New ls command installed"
+sleep 3
+clear
+#
+#
 # ---------------------------
 # Main Menu
 # ---------------------------
@@ -239,6 +261,7 @@ echo " (h) Install Oracle Java "
 echo " (j) Install newest kernel from backports "
 echo "     -- Reboot Required -- "
 echo " (k) Fancy Shell Install "
+echo " (L) New Cat Commnad called Bat Install "
 echo " "
 echo " (x) Exit "
 echo
@@ -254,6 +277,7 @@ case $choice in
   h|H) ORACLE;;
   j|J) BPKERNEL;;
   j|K) FANCYSHELL;;
+  l|L) CATCMDBAT;;
   x|X) exit;;
   *) echo "Invalid Answer, Please Try Again";;
 #
