@@ -309,6 +309,28 @@ sleep 3
 clear
 #
 #
+#
+#
+LXDEDSKINSTA () { 
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing LXDE Desktop install"
+sleep 5
+clear
+echo " "
+apt-get install LXDE slim lightdm iceweasel icedove vim emacs gedit gimp brasero libasound2 alsa-utils alsa-oss alsa-tools-gui vlc libavcodec-extra-53 mpv mutter 
+clear
+echo " "
+echo "New ls command installed"
+sleep 3
+clear
+#
+#
 # ---------------------------
 # Main Menu
 # ---------------------------
@@ -335,6 +357,7 @@ echo " (k) Fancy Shell Install "
 echo " (L) New Cat Commnad called Bat Install "
 echo " (M) Extra Fonts Install "
 echo " (N) Locals Purge to free up more Disk Space "
+echo " (O) LXDE Desktop Install "
 echo " "
 echo " (x) Exit "
 echo
@@ -353,6 +376,7 @@ case $choice in
   l|L) CATCMDBAT;;
   m|M) XRTAFONTS;;
   n|N) LCPURGE;;
+  o|O) LXDEDSKINSTA;;
   x|X) exit;;
   *) echo "Invalid Answer, Please Try Again";;
 #
