@@ -287,6 +287,28 @@ sleep 3
 clear
 #
 #
+LCPURGE () { 
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Locals Purge to free up more Disk Space "
+sleep 5
+clear
+echo " "
+apt-get install localepurge -y
+localepurge
+clear
+sleep 5
+echo " "
+echo "Locals Purged!"
+sleep 3
+clear
+#
+#
 # ---------------------------
 # Main Menu
 # ---------------------------
@@ -312,6 +334,7 @@ echo "     -- Reboot Required -- "
 echo " (k) Fancy Shell Install "
 echo " (L) New Cat Commnad called Bat Install "
 echo " (M) Extra Fonts Install "
+echo " (N) Locals Purge to free up more Disk Space "
 echo " "
 echo " (x) Exit "
 echo
@@ -329,6 +352,7 @@ case $choice in
   j|K) FANCYSHELL;;
   l|L) CATCMDBAT;;
   m|M) XRTAFONTS;;
+  n|N) LCPURGE;;
   x|X) exit;;
   *) echo "Invalid Answer, Please Try Again";;
 #
