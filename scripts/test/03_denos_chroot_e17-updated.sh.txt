@@ -46,6 +46,11 @@ apt-get install -y --no-install-recommends \
     nano e17* && \
 apt-get clean
 
+echo 'deb http://www.deb-multimedia.org bullseye main non-free' | sudo tee /etc/apt/sources.list.d/dev-multimedia.list
+wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb -P /tmp/
+dpkg -i /tmp/deb-multimedia-keyring_2016.8.1_all.deb
+rm /tmp/deb-multimedia-keyring_2016.8.1_all.deb
+
 echo -e "127.0.0.1\tlocalhost" > /etc/hosts
 echo -e "127.0.0.1\t$DISTRO_HOSTNAME" >> /etc/hosts
 
