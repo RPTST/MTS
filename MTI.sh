@@ -5,7 +5,7 @@ DEVTOOLS() {
 clear
 echo " "
 apt install -y \
-    build-essential make cmake gcc g++ git curl wget ninja-build \
+    build-essential openssh-server openssh-client make cmake libc glibc gcc g++ git curl wget ninja-build \
     default-jdk default-jre mosh screen original-awk gawk curl git wget zip unzip unrar-free &&
 clear
 echo " "
