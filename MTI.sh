@@ -309,6 +309,27 @@ sleep 3
 clear
 #
 #
+SYSMONTSK () { 
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing Windows Modern System Monitor install"
+sleep 5
+clear
+echo " "
+add-apt-repository ppa:camel-neeraj/sysmontask
+apt update
+apt install python3-pip sysmontask 
+pip3 install -U psutil -y
+clear
+echo " "
+echo "Windows Modern System Monitor installed"
+sleep 3
+clear
 #
 #
 LXDEDSKINSTA () { 
@@ -323,10 +344,39 @@ echo "Installing LXDE Desktop install"
 sleep 5
 clear
 echo " "
-apt-get install LXDE slim lightdm iceweasel icedove vim emacs gedit gimp brasero libasound2 alsa-utils alsa-oss alsa-tools-gui vlc libavcodec-extra-53 mpv mutter 
+apt-get install LXDE slim lightdm iceweasel icedove vim emacs gedit gimp brasero libasound2 alsa-utils alsa-oss alsa-tools-gui vlc libavcodec-extra-53 mpv mutter -y
+echo " "
+echo "Installing FireJail"
+sleep 5
+mkdir ~/Project/
+cd ~/Project/
+wget https://github.com/netblue30/firejail/releases/download/0.9.64.2/firejail_0.9.64.2_1_amd64.deb
+tar -xf firejail_0.9.64.2_1_amd64.deb
+dpkg -i firejail_0.9.64.2_1_amd64.deb
+echo " "
+echo "Installing additional Fonts"
+sleep 5
+cd ~/projects/
+git clone https://github.com/ryanoasis/nerd-fonts
+cd nerd-fonts
+bash install.sh
+apt-get install fonts-font-awesome-y
+mkdir -p ~/projects/fonts/
+cd ~/projects/fonts/
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
+mkdir -p /usr/local/share/fonts/
+unzip Meslo.zip -d /usr/local/share/fonts/
+unzip RobotoMono.zip -d /usr/local/share/fonts/
+unzip SpaceMono.zip -d /usr/local/share/fonts/
+unzip Ubuntu.zip -d /usr/local/share/fonts/
+unzip UbuntuMono.zip -d /usr/local/share/fonts/
 clear
 echo " "
-echo "New ls command installed"
+echo "LXDE Desktop + More installed"
 sleep 3
 clear
 #
@@ -358,6 +408,7 @@ echo " (L) New Cat Commnad called Bat Install "
 echo " (M) Extra Fonts Install "
 echo " (N) Locals Purge to free up more Disk Space "
 echo " (O) LXDE Desktop Install "
+echo " (P) Windows System Monitor Install "
 echo " "
 echo " (x) Exit "
 echo
@@ -377,6 +428,7 @@ case $choice in
   m|M) XRTAFONTS;;
   n|N) LCPURGE;;
   o|O) LXDEDSKINSTA;;
+  p|P) SYSMONTSK;;
   x|X) exit;;
   *) echo "Invalid Answer, Please Try Again";;
 #
