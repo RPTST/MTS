@@ -1,70 +1,94 @@
-#!/bin/bash
-#
-#
 DEVTOOLS() {
 clear
+echo "============= "
+echo "System update"
+echo "============= "
+apt-get update
+echo "============== "
+echo "System updated"
+echo "============== "
+sleep 5
+clear
+echo "========================================= "
+echo "Install base development tools"
+echo "========================================= "
+sleep 5
 echo " "
 apt install -y \
-    build-essential openssh-server openssh-client make cmake libc glibc gcc g++ git curl wget ninja-build \
+    build-essential openssh-server openssh-client make cmake gcc g++ git curl wget ninja-build \
     default-jdk default-jre mosh screen original-awk gawk curl git wget zip unzip unrar-free &&
 clear
 echo " "
+echo "========================================= "
 echo "Install base development tools"
+echo "========================================= "
 sleep 5
 clear
 }
 #
 #
-STRSTERMINST () { 
+STRSTERMINST () {
 clear
-echo " "
-apt-get -y update
-echo " "
+echo "============= "
 echo "System update"
+echo "============= "
+apt-get update
+echo "============= "
+echo "System update"
+echo "============= "
 clear
-echo " "
+echo "========================================= "
 echo "Installing Standard Terminal Apps"
+echo "========================================= "
 sleep 5
-clear
 echo " "
 apt-get install -y \
     pv tshark saidar xlsx2csv docx2txt pwgen neofetch libcrack2 htop bmon htop \
     wavemon iftop ipcalc hexcurse ncdu hping3 ntfs-3g arping lshw fping neofetch \
-    curl wget iftop apt-transport-https rar unrar cifs-utils fuse3 gvfs-fuse gvfs-backends gvfs-bin \
+    curl wget iftop apt-transport-https unrar-free cifs-utils fuse3 gvfs-fuse gvfs-backends gvfs-bin \
     chkrootkit ioping trash-cli ranger mc whowatch lsof nethogs fdupes stress ccze tilde nmap &&
-clear
 echo " "
+echo "========================================= "
 echo "Terminal Apps installed"
+echo "========================================= "
 sleep 5
 clear
-echo " "
+echo "========================================= "
 echo "Installing GoTop App"
+echo "========================================= "
 sleep 5
-clear
 echo " "
-wget https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_arm7.tgz -P /tmp/
-tar -xf /tmp/gotop_v4.1.2_linux_arm7.tgz
-mkdir -p /usr/local/bin
-cp /tmp/gotop /usr/local/bin/
-clear
+mkdir ~/Projects
+cd ~/Projects
+wget https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_amd64.tgz
+#curl -L https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_amd64.tgz -o $HOME/Projects
+tar -xf /Projects/gotop_v4.1.2_linux_amd64.tgz
+#mkdir -p /usr/local/bin
+cp ~/Projects/gotop /usr/local/bin/
 echo " "
+echo "========================================= "
 echo "GoTop App installed"
+echo "========================================= "
 sleep 5
 clear
 }
 #
 #
-ADDINSTPKGS () { 
+ADDINSTPKGS () {
 clear
-echo " "
-apt-get -y update
-echo " "
+echo "============= "
 echo "System update"
-clear
-echo " "
-echo "Installing Additional Multimedia Apps"
+echo "============= "
+apt-get update
+echo "============== "
+echo "System updated"
+echo "============== "
 sleep 5
 clear
+echo "========================================= "
+echo "Installing Additional Multimedia Apps"
+echo "========================================= "
+sleep 5
 echo " "
 apt-get install -y \
     haveged less gdebi galculator grsync synaptic gparted bleachbit flac xorriso \
@@ -78,21 +102,35 @@ apt-get install -y \
     gnome-system-tools dos2unix dialog transmission-gtk handbrake \
     handbrake-cli pciutils zulumount-gui zulucrypt-gui zulupolkit \
     dirmngr nvidia-detect openvpn network-manager-openvpn openvpn-systemd-resolved libqt5opengl5 &&
-clear
 echo " "
+echo "========================================= "
 echo "Additional Multimedia software installed"
+echo "========================================= "
 sleep 5
 clear
 }
 #
 #
-WIFI () { 
+WIFI () {
 clear
+echo "============= "
+echo "System update"
+echo "============= "
+apt-get update
+echo "============= "
+echo "System update"
+echo "============= "
+sleep 5
+echo "========================================= "
+echo "WIFI firmware installed"
+echo "========================================= "
+sleep 5
 echo " "
 apt-get -y install b43-fwcutter firmware-b43-installer firmware-b43legacy-installer
-clear
 echo " "
-echo "Additional software installed"
+echo "========================================= "
+echo "WIFI firmware installed"
+echo "========================================= "
 sleep 5
 clear
 }
@@ -100,24 +138,29 @@ clear
 #
 MMEDIA () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
-clear
-echo " "
-echo "Installing multimedia repo"
+echo "============== "
 sleep 5
 clear
+echo "========================================= "
+echo "Installing multimedia repo"
+echo "========================================= "
+sleep 5
 echo " "
 echo 'deb http://www.deb-multimedia.org bullseye main non-free' | sudo tee /etc/apt/sources.list.d/dev-multimedia.list
 wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
 dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
 apt-get -y update
 apt-get -y upgrade
-clear
 echo " "
+echo "========================================= "
 echo "Added deb-multimedia.org to repos"
+echo "========================================= "
 sleep 5
 clear
 }
@@ -125,15 +168,18 @@ clear
 #
 UPGDMO () {
 clear
-echo " "
-echo "System will be upgraded"
-clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-apt-get upgrade -y
-clear
-echo " "
-echo "System fully upgraded"
+aot-get upgrade -y
+echo "============== "
+echo "System updated"
+echo "============== "
+sleep 5
+echo "========================================= "
+echo "System fully upgraded!"
+echo "========================================= "
 sleep 5
 clear
 }
@@ -141,21 +187,26 @@ clear
 #
 YTDLUP () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
-clear
-echo " "
-echo "Installing YouTubeDL"
+echo "============== "
 sleep 5
 clear
+echo "========================================= "
+echo "Installing YouTubeDL"
+echo "========================================= "
+sleep 5
 echo " "
 curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/bin/youtube-dl
 chmod a+rx /usr/bin/youtube-dl
-clear
 echo " "
+echo "========================================= "
 echo "Updating Youtube-dl to the latest version"
+echo "========================================= "
 sleep 5
 clear
 }
@@ -163,36 +214,48 @@ clear
 #
 ORACLE () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
+echo "============== "
+sleep 5
 clear
 echo " "
+echo "========================================= "
 echo "Installing Oracle repo and latest java"
+echo "========================================= "
 sleep 5
 clear
 echo " "
 sudo add-apt-repository ppa:linuxuprising/java
 sudo apt install oracle-java17-installer --install-recommends
 echo oracle-java17-installer shared/accepted-oracle-license-v1-3 select true | sudo /usr/bin/debconf-set-selections
-clear
 echo " "
+echo "========================================= "
 echo "Enabled systemd-resolved service"
+echo "========================================= "
 sleep 5
 clear
 }
 #
 #
-BPKERNEL () { 
+BPKERNEL () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
+echo "============== "
+sleep 5
 clear
-echo " "
+echo "========================================= "
 echo "Installing lastest back-port linux image and firmware"
+echo "========================================= "
 sleep 5
 clear
 echo " "
@@ -202,173 +265,204 @@ apt-get -y install -t bullseye-backports \
     firmware-misc-nonfree firmware-realtek firmware-atheros firmware-bnx2 firmware-bnx2x \
     firmware-brcm80211 firmware-ipw2x00 firmware-intelwimax firmware-iwlwifi firmware-bnx2 firmware-bnx2x \
     firmware-libertas firmware-netxen firmware-zd1211 gnome-nettool guvcview &&
-clear
 echo " "
+echo "========================================= "
 echo "Newest kernel from backports installed"
+echo "========================================= "
 sleep 3
 clear
 }
 #
 #
-FANCYSHELL () { 
+FANCYSHELL () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
-clear
-echo " "
-echo "Installing fancy shell"
+echo "============== "
 sleep 5
 clear
-echo " "
-mkdir $HOME/projects/
-cd $HOME/projects/
+echo "========================================= "
+echo "Installing fancy shell"
+echo "========================================= "
+sleep 5
+mkdir ~/projects/
+cd ~/projects/
 git clone --recursive https://github.com/andresgongora/synth-shell.git
 cd synth-shell/
 chmod +x setup.sh
 echo "i u n Y n n n"| ./setup.sh
 sleep 5
-clear
 echo " "
+echo "========================================= "
 echo "fancy shell installed"
+echo "========================================= "
 sleep 5
-echo " "
-echo "Installing new ls command"
 clear
-echo " "
+echo "========================================= "
+echo "Installing new ls command"
+echo "========================================= "
 filename=".bashrc"
 search="ls --color=auto"
 replace="lsd"
 wget -P ~/projects https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd-musl_0.20.1_arm64.deb
 dpkg -i lsd-musl_0.20.1_arm64.deb
-sed -i "s/$search/$replace/" $HOME/$filename
-clear
+sed -i "s/$search/$replace/" ~/$filename
 echo " "
+echo "========================================= "
 echo "New ls command installed"
+echo "========================================= "
 sleep 3
 clear
 }
 #
 #
-CATCMDBAT () { 
+CATCMDBAT () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
-clear
-echo " "
-echo "Installing new cat command called bat"
+echo "============== "
 sleep 5
 clear
-echo " "
+echo "========================================= "
+echo "Installing new cat command called bat"
+echo "========================================= "
 wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd.deb -P /tmp/
 dpkg -i bat_*.deb
 bat /etc/profile
-clear
 echo " "
+echo "========================================= "
 echo "New ls command installed"
+echo "========================================= "
 sleep 3
 clear
 }
 #
 #
-XRTAFONTS () { 
+XRTAFONTS () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
-clear
-echo " "
-echo "Installing Extra Fonsts"
+echo "============== "
 sleep 5
 clear
+echo "========================================= "
+echo "Installing Nerd Font"
+echo "========================================= "
+sleep 5
 echo " "
-cd /tmp/
+mkdir ~/Projects/
+cd ~/Projects/
 git clone https://github.com/ryanoasis/nerd-fonts
 cd nerd-fonts
 bash install.sh
-cd /tmp/
-apt-get install -y fonts-font-awesome
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip -P /tmp/
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip -P /tmp/
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip -P /tmp/
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip -P /tmp/
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip -P /tmp/
-unzip Meslo.zip -d ~/.local/share/fonts/
-unzip RobotoMono.zip -d ~/.local/share/fonts/
-unzip SpaceMono.zip -d ~/.local/share/fonts/
-unzip Ubuntu.zip -d ~/.local/share/fonts/
-unzip UbuntuMono.zip -d ~/.local/share/fonts/
-clear
+sleep 5
 echo " "
+echo "========================================= "
+echo "Installing Awesome Font"
+echo "========================================= "
+apt-get install -y fonts-font-awesome
+sleep 5
+echo " "
+echo "========================================= "
+echo "Installing Extra Fonts"
+echo "========================================= "
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
+unzip Meslo.zip -d /usr/local/share/fonts/
+unzip RobotoMono.zip -d /usr/local/share/fonts/
+unzip SpaceMono.zip -d /usr/local/share/fonts/
+unzip Ubuntu.zip -d /usr/local/share/fonts/
+unzip UbuntuMono.zip -d /usr/local/share/fonts/
+echo " "
+echo "========================================= "
 echo "New Fonts installed"
+echo "========================================= "
 sleep 3
 clear
 }
 #
 #
-LCPURGE () { 
+LCPURGE () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
-clear
-echo " "
-echo "Locals Purge to free up more Disk Space "
+echo "============== "
 sleep 5
 clear
-echo " "
+echo "========================================= "
+echo "Locals Purge to free up more Disk Space "
+echo "========================================= "
 apt-get install localepurge -y
 localepurge
-clear
-sleep 5
 echo " "
+echo "========================================= "
 echo "Locals Purged!"
+echo "========================================= "
 sleep 3
 clear
 }
 #
 #
-SYSMONTSK () { 
+SYSMONTSK () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
-clear
-echo " "
-echo "Installing Windows Modern System Monitor install"
+echo "============== "
 sleep 5
 clear
-echo " "
+echo "========================================= "
+echo "Installing Windows Modern System Monitor install"
+echo "========================================= "
 add-apt-repository ppa:camel-neeraj/sysmontask
 apt update
-apt install python3-pip sysmontask 
+apt install python3-pip sysmontask
 pip3 install -U psutil -y
-clear
 echo " "
+echo "========================================= "
 echo "Windows Modern System Monitor installed"
+echo "========================================= "
 sleep 3
 clear
 }
 #
 #
-LXDEDSKINSTA () { 
+LXDEDSKINSTA () {
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
-clear
-echo " "
-echo "Installing LXDE Desktop install"
+echo "============== "
 sleep 5
 clear
-echo " "
+echo "========================================= "
+echo "Installing LXDE Desktop install"
+echo "========================================= "
 apt-get install -y \
     slim lightdm iceweasel lxterminal tint2 gsimplecal volumeicon nitrogen lxpanel task-lxde-desktop lxde software-properties-common \
     net-tools hsetroot qt5-style-plugins ttf-mscorefonts-installer scribus chromium dconf-editor fortune cowsay filezilla calibre \
@@ -376,12 +470,19 @@ apt-get install -y \
     audacity npm nemo praat gramps pdfchain syncthing git curl wget gdebi htop keepassxc openvpn thunar autossh icedove \
     vim emacs lxsession-default-apps libatk-adaptor libgail-common gedit gimp brasero libasound2 alsa-utils alsa-oss \
     alsa-tools-gui vlc libavcodec-extra-53 mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
-    gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 xinit xserver-xorg xorg &&
+    gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 xinit xserver-xorg xorg xserver-xorg-video-all cups-client &&
+sleep 5
+echo " "
+echo "========================================= "
+echo "Removing unwanted LXDE utils and Apps"
+echo "========================================= "
 apt-get remove \
     lxlock light-locker gpicview deluge deluge-common deluge-gtk lxmusic xterm evince \
     evince-common clipit pcmanfm smplayer &&
 echo " "
+echo "========================================= "
 echo "Installing FireJail"
+echo "========================================= "
 sleep 5
 mkdir ~/Project/
 cd ~/Project/
@@ -389,7 +490,9 @@ wget https://github.com/netblue30/firejail/releases/download/0.9.64.2/firejail_0
 tar -xf firejail_0.9.64.2_1_amd64.deb
 dpkg -i firejail_0.9.64.2_1_amd64.deb
 echo " "
+echo "========================================= "
 echo "Installing additional Fonts"
+echo "========================================= "
 sleep 5
 cd ~/projects/
 git clone https://github.com/ryanoasis/nerd-fonts
@@ -409,9 +512,10 @@ unzip RobotoMono.zip -d /usr/local/share/fonts/
 unzip SpaceMono.zip -d /usr/local/share/fonts/
 unzip Ubuntu.zip -d /usr/local/share/fonts/
 unzip UbuntuMono.zip -d /usr/local/share/fonts/
-clear
 echo " "
+echo "========================================= "
 echo "LXDE Desktop + More installed"
+echo "========================================= "
 sleep 3
 clear
 }
@@ -421,17 +525,22 @@ clear
 #
 SLOWFOX () { 
 clear
-echo " "
+echo "============= "
+echo "System update"
+echo "============= "
 apt-get update
-echo " "
+echo "============== "
 echo "System updated"
+echo "============== "
+sleep 5
 clear
-echo " "
+echo "========================================= "
 echo "Installing Slow Firefox fix"
+echo "========================================= "
 sleep 5
 clear
 echo " "
-sudo apt install python3 python3-pip mpv firefox rpi-chromium-mods
+apt install python3 python3-pip mpv firefox-esr rpi-chromium-mods
 python3 -m pip install --user --upgrade youtube-dl
 mkdir ~/projects/
 cd ~/projects/
@@ -445,7 +554,9 @@ mkdir ~/.config/mpv-handler
 cp mpv-handler/config.toml ~/.config/mpv-handler/
 clear
 echo " "
+echo "========================================= "
 echo "Slow Firefox fix installed"
+echo "========================================= "
 sleep 3
 clear
 }
