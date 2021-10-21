@@ -376,7 +376,7 @@ apt-get install -y \
     audacity npm nemo praat gramps pdfchain syncthing git curl wget gdebi htop keepassxc openvpn thunar autossh icedove \
     vim emacs lxsession-default-apps libatk-adaptor libgail-common gedit gimp brasero libasound2 alsa-utils alsa-oss \
     alsa-tools-gui vlc libavcodec-extra-53 mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
-    gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 &&
+    gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 xinit xserver-xorg xorg &&
 apt-get remove \
     lxlock light-locker gpicview deluge deluge-common deluge-gtk lxmusic xterm evince \
     evince-common clipit pcmanfm smplayer &&
