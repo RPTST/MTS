@@ -20,6 +20,15 @@ apt-get install -y --no-install-recommends \
     live-boot \
     systemd-sysv
 
+apt-get -y install -t bullseye-backports \
+    firmware-linux firmware-linux-nonfree firmware-misc-nonfree
+
+apt-get -y install \
+    b43-fwcutter firmware-b43-installer firmware-b43legacy-installer
+
+apt-get -y install -t bullseye-backports \
+    firmware-realtek firmware-atheros firmware-bnx2 firmware-bnx2x firmware-brcm80211 firmware-ipw2x00 firmware-intelwimax firmware-iwlwifi firmware-libertas firmware-netxen firmware-zd1211
+
 apt-get install -y --no-install-recommends \
     network-manager net-tools wireless-tools wpagui \
     curl openssh-server openssh-client \
