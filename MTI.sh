@@ -417,6 +417,40 @@ clear
 }
 #
 #
+#
+#
+SLOWFOX () { 
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing Slow Firefox fix"
+sleep 5
+clear
+echo " "
+sudo apt install python3 python3-pip mpv firefox rpi-chromium-mods
+python3 -m pip install --user --upgrade youtube-dl
+mkdir ~/projects/
+cd ~/projects/
+wget https://github.com/akiirui/mpv-handler/releases/latest/download/mpv-handler-linux-x64.zip
+unzip -d mpv-handler mpv-handler-linux-x64.zip
+mkdir ~/.local/bin/ #just in case
+mkdir ~/.local/share/applications/ #just in case
+cp mpv-handler/mpv-handler ~/.local/bin/
+cp mpv-handler/mpv-handler.desktop ~/.local/share/applications/
+mkdir ~/.config/mpv-handler
+cp mpv-handler/config.toml ~/.config/mpv-handler/
+clear
+echo " "
+echo "Slow Firefox fix installed"
+sleep 3
+clear
+}
+#
+#
 # ---------------------------
 # Main Menu
 # ---------------------------
@@ -445,6 +479,7 @@ echo " (M) Extra Fonts Install "
 echo " (N) Locals Purge to free up more Disk Space "
 echo " (O) LXDE Desktop Install "
 echo " (P) Windows System Monitor Install "
+echo " (Q) Slow Firefox Alternative Install "
 echo " "
 echo " (x) Exit "
 echo
@@ -465,6 +500,7 @@ case $choice in
   n|N) LCPURGE;;
   o|O) LXDEDSKINSTA;;
   p|P) SYSMONTSK;;
+  q|Q) SLOWFOX;;
   x|X) exit;;
   *) echo "Invalid Answer, Please Try Again";;
 #
