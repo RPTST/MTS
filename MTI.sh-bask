@@ -111,6 +111,15 @@ clear
 YTDLUP () {
 clear
 echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing YouTubeDL"
+sleep 5
+clear
+echo " "
 curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/bin/youtube-dl
 chmod a+rx /usr/bin/youtube-dl
 clear
@@ -122,6 +131,15 @@ clear
 #
 #
 ORACLE () {
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing Oracle repo and latest java"
+sleep 5
 clear
 echo " "
 sudo add-apt-repository ppa:linuxuprising/java
@@ -136,6 +154,15 @@ clear
 #
 #
 BPKERNEL () { 
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing lastest back-port linux image and firmware"
+sleep 5
 clear
 echo " "
 apt-get -y install -t bullseye-backports linux-image-amd64 linux-headers-amd64
