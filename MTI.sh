@@ -4,7 +4,9 @@
 DEVTOOLS() {
 clear
 echo " "
-apt install -y build-essential make cmake gcc g++ git curl wget ninja-build neofetch default-jdk default-jre mosh screen original-awk gawk curl git wget zip unzip unrar-free
+apt install -y \
+    build-essential make cmake gcc g++ git curl wget ninja-build \
+    default-jdk default-jre mosh screen original-awk gawk curl git wget zip unzip unrar-free &&
 clear
 echo " "
 echo "Install base development tools"
@@ -25,7 +27,11 @@ echo "Installing Standard Terminal Apps"
 sleep 5
 clear
 echo " "
-apt-get install -y pv tshark saidar xlsx2csv docx2txt pwgen libcrack2 htop bmon wavemon iftop ipcalc hexcurse hping3 arping lshw fping chkrootkit ioping trash-cli ranger mc whowatch lsof nethogs fdupes stress ccze tilde nmap
+apt-get install -y \
+    pv tshark saidar xlsx2csv docx2txt pwgen neofetch libcrack2 htop bmon htop \
+    wavemon iftop ipcalc hexcurse ncdu hping3 ntfs-3g arping lshw fping neofetch \
+    curl wget iftop apt-transport-https rar unrar cifs-utils fuse3 gvfs-fuse gvfs-backends gvfs-bin \
+    chkrootkit ioping trash-cli ranger mc whowatch lsof nethogs fdupes stress ccze tilde nmap &&
 clear
 echo " "
 echo "Terminal Apps installed"
@@ -56,14 +62,25 @@ echo " "
 echo "System update"
 clear
 echo " "
-echo "Installing Additional Apps"
+echo "Installing Additional Multimedia Apps"
 sleep 5
 clear
 echo " "
-apt-get -y install haveged less gdebi galculator grsync synaptic gparted bleachbit flac faad faac mjpegtools x265 x264 mpg321 ffmpeg streamripper sox mencoder dvdauthor twolame lame asunder aisleriot gnome-mahjongg gnome-chess dosbox filezilla libxvidcore4 vlc obs-studio soundconverter hplip-gui cdrdao frei0r-plugins htop jfsutils xfsprogs ntfs-3g cdtool mtools clonezilla testdisk numix-gtk-theme greybird-gtk-theme breeze-icon-theme breeze-gtk-theme xorriso cdrskin p7zip-full p7zip-rar keepassx hardinfo inxi gnome-disk-utility simplescreenrecorder thunderbird simple-scan gimp gthumb remmina arc-theme gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good gnome-system-tools dos2unix dialog papirus-icon-theme transmission-gtk handbrake handbrake-cli rar unrar cifs-utils fuse3 gvfs-fuse gvfs-backends gvfs-bin pciutils squashfs-tools syslinux syslinux-common dosfstools isolinux live-build fakeroot linux-headers-amd64 lsb-release menu build-essential dkms curl wget iftop apt-transport-https dirmngr nvidia-detect openvpn network-manager-openvpn openvpn-systemd-resolved libqt5opengl5 zulumount-gui zulucrypt-gui zulupolkit neofetch firmware-linux firmware-linux-nonfree firmware-misc-nonfree firmware-realtek firmware-atheros firmware-bnx2 firmware-bnx2x firmware-brcm80211 firmware-ipw2x00 firmware-intelwimax firmware-iwlwifi firmware-libertas firmware-netxen firmware-zd1211 gnome-nettool guvcview
+apt-get install -y \
+    haveged less gdebi galculator grsync synaptic gparted bleachbit flac xorriso \
+    faad faac mjpegtools x265 x264 mpg321 ffmpeg streamripper sox mencoder \
+    dvdauthor twolame lame asunder aisleriot gnome-mahjongg gnome-chess dosbox \
+    filezilla libxvidcore4 vlc obs-studio soundconverter hplip-gui cdrdao \
+    frei0r-plugins jfsutils xfsprogs cdtool mtools clonezilla testdisk \
+    cdrskin p7zip-full p7zip-rar keepassx hardinfo inxi gnome-disk-utility \
+    simplescreenrecorder thunderbird simple-scan gimp gthumb remmina \
+    gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good \
+    gnome-system-tools dos2unix dialog transmission-gtk handbrake \
+    handbrake-cli pciutils zulumount-gui zulucrypt-gui zulupolkit \
+    dirmngr nvidia-detect openvpn network-manager-openvpn openvpn-systemd-resolved libqt5opengl5 &&
 clear
 echo " "
-echo "Additional software installed"
+echo "Additional Multimedia software installed"
 sleep 5
 clear
 }
@@ -179,9 +196,12 @@ echo "Installing lastest back-port linux image and firmware"
 sleep 5
 clear
 echo " "
-apt-get -y install -t bullseye-backports linux-image-amd64 linux-headers-amd64
-apt-get -y install -t bullseye-backports firmware-linux firmware-linux-nonfree firmware-misc-nonfree
-apt-get -y install -t bullseye-backports firmware-realtek firmware-atheros firmware-bnx2 firmware-bnx2x firmware-brcm80211 firmware-ipw2x00 firmware-intelwimax firmware-iwlwifi firmware-libertas firmware-netxen firmware-zd1211
+apt-get -y install -t bullseye-backports \
+    firmware-linux firmware-linux-nonfree \
+    linux-image-amd64 linux-headers-amd64 firmware-linux firmware-linux-nonfree firmware-misc-nonfree \
+    firmware-misc-nonfree firmware-realtek firmware-atheros firmware-bnx2 firmware-bnx2x \
+    firmware-brcm80211 firmware-ipw2x00 firmware-intelwimax firmware-iwlwifi firmware-bnx2 firmware-bnx2x \
+    firmware-libertas firmware-netxen firmware-zd1211 gnome-nettool guvcview &&
 clear
 echo " "
 echo "Newest kernel from backports installed"
@@ -344,7 +364,17 @@ echo "Installing LXDE Desktop install"
 sleep 5
 clear
 echo " "
-apt-get install LXDE slim lightdm iceweasel icedove vim emacs gedit gimp brasero libasound2 alsa-utils alsa-oss alsa-tools-gui vlc libavcodec-extra-53 mpv mutter -y
+apt-get install -y \
+    slim lightdm iceweasel lxterminal tint2 gsimplecal volumeicon nitrogen lxpanel task-lxde-desktop lxde software-properties-common \
+    net-tools hsetroot qt5-style-plugins ttf-mscorefonts-installer scribus chromium dconf-editor fortune cowsay filezilla calibre \
+    numix-gtk-theme greybird-gtk-theme breeze-icon-theme breeze-gtk-theme liferea shotcut aptitude synaptic arc-theme \
+    audacity npm nemo praat gramps pdfchain syncthing git curl wget gdebi htop keepassxc openvpn thunar autossh icedove \
+    vim emacs lxsession-default-apps libatk-adaptor libgail-common gedit gimp brasero libasound2 alsa-utils alsa-oss \
+    alsa-tools-gui vlc libavcodec-extra-53 mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
+    gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 &&
+apt-get remove \
+    lxlock light-locker gpicview deluge deluge-common deluge-gtk lxmusic xterm evince \
+    evince-common clipit pcmanfm smplayer &&
 echo " "
 echo "Installing FireJail"
 sleep 5
