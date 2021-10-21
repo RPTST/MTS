@@ -252,6 +252,41 @@ sleep 3
 clear
 #
 #
+XRTAFONTS () { 
+clear
+echo " "
+apt-get update
+echo " "
+echo "System updated"
+clear
+echo " "
+echo "Installing Extra Fonsts"
+sleep 5
+clear
+echo " "
+cd /tmp/
+git clone https://github.com/ryanoasis/nerd-fonts
+cd nerd-fonts
+bash install.sh
+cd /tmp/
+apt-get install -y fonts-font-awesome
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip -P /tmp/
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip -P /tmp/
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip -P /tmp/
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip -P /tmp/
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip -P /tmp/
+unzip Meslo.zip -d ~/.local/share/fonts/
+unzip RobotoMono.zip -d ~/.local/share/fonts/
+unzip SpaceMono.zip -d ~/.local/share/fonts/
+unzip Ubuntu.zip -d ~/.local/share/fonts/
+unzip UbuntuMono.zip -d ~/.local/share/fonts/
+clear
+echo " "
+echo "New Fonts installed"
+sleep 3
+clear
+#
+#
 # ---------------------------
 # Main Menu
 # ---------------------------
@@ -276,6 +311,7 @@ echo " (j) Install newest kernel from backports "
 echo "     -- Reboot Required -- "
 echo " (k) Fancy Shell Install "
 echo " (L) New Cat Commnad called Bat Install "
+echo " (M) Extra Fonts Install "
 echo " "
 echo " (x) Exit "
 echo
@@ -292,6 +328,7 @@ case $choice in
   j|J) BPKERNEL;;
   j|K) FANCYSHELL;;
   l|L) CATCMDBAT;;
+  m|M) XRTAFONTS;;
   x|X) exit;;
   *) echo "Invalid Answer, Please Try Again";;
 #
