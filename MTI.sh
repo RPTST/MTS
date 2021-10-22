@@ -497,6 +497,7 @@ echo "============= "
 echo "System update"
 echo "============= "
 apt-get update
+apt-get upgrade -y
 echo "============== "
 echo "System updated"
 echo "============== "
@@ -513,7 +514,7 @@ apt-get install -y \
     vim emacs lxsession-default-apps libatk-adaptor libgail-common gedit gimp brasero libasound2 alsa-utils alsa-oss \
     alsa-tools-gui vlc libavcodec-extra58 mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
     gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 xinit xserver-xorg xorg xserver-xorg-video-all \
-    pulseaudio pavucontrol cups-client abiword libavutil56 libswresample3 libavcodec58 &&
+    pulseaudio pavucontrol cups-client abiword libavutil56 libswresample3 &&
 sleep 5
 echo " "
 echo "========================================= "
