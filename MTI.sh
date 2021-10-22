@@ -532,6 +532,9 @@ sleep 5
 sudo -u $real_user wget https://github.com/netblue30/firejail/releases/download/0.9.64.2/firejail_0.9.64.2_1_amd64.deb
 sudo -u $real_user tar -xf firejail_0.9.64.2_1_amd64.deb
 dpkg -i firejail_0.9.64.2_1_amd64.deb
+sleep 3
+clear
+apt-get upgrade -y
 sleep 5
 echo " "
 echo "========================================= "
