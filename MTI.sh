@@ -579,6 +579,65 @@ clear
 }
 #
 #
+VSCODIUM () {
+clear
+echo "============= "
+echo "System update"
+echo "============= "
+apt-get update
+echo "============== "
+echo "System updated"
+echo "============== "
+sleep 5
+clear
+echo "========================================= "
+echo "Installing VSCodium"
+echo "========================================= "
+sleep 5
+echo " "
+(echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" | sudo tee /etc/apt/sources.list.d/atom.list)
+wget https://packagecloud.io/AtomEditor/atom/gpgkey -O atom_gpgkey
+mv atom_signing_key.gpg /etc/apt/trusted.gpg.d/
+apt update
+apt install atom -y
+echo " "
+echo "========================================= "
+echo "VSCodium installed"
+echo "========================================= "
+sleep 3
+clear
+}
+#
+#
+ATOMIDE () {
+clear
+echo "============= "
+echo "System update"
+echo "============= "
+apt-get update
+echo "============== "
+echo "System updated"
+echo "============== "
+sleep 5
+clear
+echo "========================================= "
+echo "Installing Atom Editor"
+echo "========================================= "
+sleep 5
+echo " "
+(echo 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list)
+(wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/vscodium.gpg)
+sudo apt update
+sudo apt install codium -y
+echo " "
+echo "========================================= "
+echo "Atom Editor installed"
+echo "========================================= "
+sleep 3
+clear
+}
+#
+#
 # ---------------------------
 # Main Menu
 # ---------------------------
@@ -586,9 +645,9 @@ clear
 mainmenu () { while true
 do
 clear
-echo "-------------------"
-echo " Make eznixOS:"
-echo "-------------------"
+echo "-----------------------------"
+echo " Make OS/Desktop More Useful:"
+echo "-----------------------------"
 echo
 echo " (a) Install base Development tools "
 echo " (b) Install Standard Terminal Apps "
@@ -608,6 +667,8 @@ echo " (n) Locals Purge to free up more Disk Space "
 echo " (o) LXDE Desktop Install "
 echo " (p) Windows System Monitor Install "
 echo " (q) Slow Firefox Alternative Install "
+echo " (r) VS Codium Install "
+echo " (s) Atom Install "
 echo " "
 echo " (x) Exit "
 echo
@@ -629,6 +690,8 @@ case $choice in
   o|O) LXDEDSKINSTA;;
   p|P) SYSMONTSK;;
   q|Q) SLOWFOX;;
+  r|R) VSCODIUM;;
+  s|S) ATOMIDE;;
   x|X) exit;;
   *) echo "Invalid Answer, Please Try Again";;
 #
