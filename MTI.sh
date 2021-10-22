@@ -513,7 +513,7 @@ apt-get install -y \
     vim emacs lxsession-default-apps libatk-adaptor libgail-common gedit gimp brasero libasound2 alsa-utils alsa-oss \
     alsa-tools-gui vlc libavcodec-extra58 mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
     gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 xinit xserver-xorg xorg xserver-xorg-video-all \
-    pulseaudio pavucontrol cups-client &&
+    pulseaudio pavucontrol cups-client abiword &&
 sleep 5
 echo " "
 echo "========================================= "
@@ -521,7 +521,7 @@ echo "Removing unwanted LXDE utils and Apps"
 echo "========================================= "
 apt-get remove -y \
     lxlock light-locker gpicview deluge deluge-common deluge-gtk lxmusic xterm evince \
-    evince-common clipit pcmanfm smplayer &&
+    evince-common clipit pcmanfm smplayer libreoffice &&
 apt-get autoremove -y
 sleep 5
 echo " "
