@@ -2,6 +2,13 @@
 #
 #
 #
+if ! [ $(id -u) = 0 ]; then
+   echo "The script need to be run as root." >&2
+   exit 1
+fi
+if [ $SUDO_USER ]; then
+    real_user=$SUDO_USER
+#
 DEVTOOLS() {
 clear
 echo "============= "
@@ -40,6 +47,7 @@ apt-get update
 echo "============= "
 echo "System update"
 echo "============= "
+sleep 5
 clear
 echo "========================================= "
 echo "Installing Standard Terminal Apps"
@@ -62,13 +70,12 @@ echo "Installing GoTop App"
 echo "========================================= "
 sleep 5
 echo " "
-mkdir ~/Projects
-cd ~/Projects
-wget https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_amd64.tgz
-#curl -L https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_amd64.tgz -o $HOME/Projects
-tar -xf /Projects/gotop_v4.1.2_linux_amd64.tgz
-#mkdir -p /usr/local/bin
-cp ~/Projects/gotop /usr/local/bin/
+sudo -u $real_user mkdir ~/Projects
+sudo -u $real_user cd ~/Projects
+sudo -u $real_user wget https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_amd64.tgz
+sudo -u $real_user tar -xf gotop_v4.1.2_linux_amd64.tgz
+mkdir -p /usr/local/bin/
+mv gotop /usr/local/bin/gotop
 echo " "
 echo "========================================= "
 echo "GoTop App installed"
@@ -83,6 +90,10 @@ clear
 echo "============= "
 echo "System update"
 echo "============= "
+filenamea="sources.list"
+searcha="bullseye main"
+replacea="bullseye main contrib non-free"
+sed -i "s/$searcha/$replacea/" /etc/apt/$filenamea
 apt-get update
 echo "============== "
 echo "System updated"
@@ -90,25 +101,25 @@ echo "============== "
 sleep 5
 clear
 echo "========================================= "
-echo "Installing Additional Multimedia Apps"
+echo "Installing Non-Free Apps"
 echo "========================================= "
-sleep 5
 echo " "
+sleep 5
 apt-get install -y \
     haveged less gdebi galculator grsync synaptic gparted bleachbit flac xorriso \
     faad faac mjpegtools x265 x264 mpg321 ffmpeg streamripper sox mencoder \
     dvdauthor twolame lame asunder aisleriot gnome-mahjongg gnome-chess dosbox \
     filezilla libxvidcore4 vlc obs-studio soundconverter hplip-gui cdrdao \
     frei0r-plugins jfsutils xfsprogs cdtool mtools clonezilla testdisk \
-    cdrskin p7zip-full p7zip-rar keepassx hardinfo inxi gnome-disk-utility \
+    cdrskin p7zip-full unrar-free keepassx hardinfo inxi gnome-disk-utility \
     simplescreenrecorder thunderbird simple-scan gimp gthumb remmina \
     gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good \
     gnome-system-tools dos2unix dialog transmission-gtk handbrake \
     handbrake-cli pciutils zulumount-gui zulucrypt-gui zulupolkit \
-    dirmngr nvidia-detect openvpn network-manager-openvpn openvpn-systemd-resolved libqt5opengl5 &&
+    dirmngr openvpn network-manager-openvpn openvpn-systemd-resolved libqt5opengl5 &&
 echo " "
 echo "========================================= "
-echo "Additional Multimedia software installed"
+echo "Additional Non-Free software installed"
 echo "========================================= "
 sleep 5
 clear
@@ -453,6 +464,7 @@ clear
 }
 #
 #
+#
 LXDEDSKINSTA () {
 clear
 echo "============= "
@@ -488,29 +500,37 @@ echo "========================================= "
 echo "Installing FireJail"
 echo "========================================= "
 sleep 5
-mkdir ~/Project/
-cd ~/Project/
-wget https://github.com/netblue30/firejail/releases/download/0.9.64.2/firejail_0.9.64.2_1_amd64.deb
-tar -xf firejail_0.9.64.2_1_amd64.deb
+sudo -u $real_user mkdir ~/Project/
+sudo -u $real_user cd ~/Project/
+sudo -u $real_user wget https://github.com/netblue30/firejail/releases/download/0.9.64.2/firejail_0.9.64.2_1_amd64.deb
+sudo -u $real_user tar -xf firejail_0.9.64.2_1_amd64.deb
 dpkg -i firejail_0.9.64.2_1_amd64.deb
 echo " "
 echo "========================================= "
-echo "Installing additional Fonts"
+echo "Installing Nerd Fonts"
 echo "========================================= "
 sleep 5
-cd ~/projects/
+sudo -u $real_user cd ~/projects/
 git clone https://github.com/ryanoasis/nerd-fonts
-cd nerd-fonts
+sudo -u $real_user cd nerd-fonts
 bash install.sh
+echo " "
+echo "========================================= "
+echo "Installing Aswesome Fonts"
+echo "========================================= "
 apt-get install fonts-font-awesome-y
-mkdir -p ~/projects/fonts/
-cd ~/projects/fonts/
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
-mkdir -p /usr/local/share/fonts/
+echo " "
+echo "========================================= "
+echo "Installing Additional Fonts"
+echo "========================================= "
+sudo -u $real_user mkdir -p ~/projects/fonts/
+sudo -u $real_user cd ~/projects/fonts/
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
+sudo -u $real_user mkdir -p /usr/local/share/fonts/
 unzip Meslo.zip -d /usr/local/share/fonts/
 unzip RobotoMono.zip -d /usr/local/share/fonts/
 unzip SpaceMono.zip -d /usr/local/share/fonts/
@@ -626,6 +646,10 @@ done
 # Begin main program:
 #
 mainmenu
+#
+else
+    real_user=$(whoami)
+fi
 #
 done
 #
