@@ -1,14 +1,13 @@
 #!/bin/bash
 #
 #
-#
 if ! [ $(id -u) = 0 ]; then
    echo "The script need to be run as root." >&2
    exit 1
 fi
 if [ $SUDO_USER ]; then
     real_user=$SUDO_USER
-#
+
 DEVTOOLS() {
 clear
 echo "============= "
@@ -28,7 +27,6 @@ echo " "
 apt install -y \
     build-essential openssh-server openssh-client make cmake gcc g++ git curl wget ninja-build \
     default-jdk default-jre mosh screen original-awk gawk curl git wget zip unzip unrar-free &&
-clear
 echo " "
 echo "========================================= "
 echo "Install base development tools"
@@ -39,6 +37,8 @@ clear
 #
 #
 STRSTERMINST () {
+sudo -u $real_user mkdir ~/Projects
+sudo -u $real_user cd ~/Projects
 clear
 echo "============= "
 echo "System update"
@@ -70,8 +70,6 @@ echo "Installing GoTop App"
 echo "========================================= "
 sleep 5
 echo " "
-sudo -u $real_user mkdir ~/Projects
-sudo -u $real_user cd ~/Projects
 sudo -u $real_user wget https://github.com/xxxserxxx/gotop/releases/download/v4.1.2/gotop_v4.1.2_linux_amd64.tgz
 sudo -u $real_user tar -xf gotop_v4.1.2_linux_amd64.tgz
 mkdir -p /usr/local/bin/
@@ -86,6 +84,8 @@ clear
 #
 #
 ADDINSTPKGS () {
+sudo -u $real_user mkdir ~/Projects
+sudo -u $real_user cd ~/Projects
 clear
 echo "============= "
 echo "System update"
@@ -116,7 +116,8 @@ apt-get install -y \
     gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good \
     gnome-system-tools dos2unix dialog transmission-gtk handbrake \
     handbrake-cli pciutils zulumount-gui zulucrypt-gui zulupolkit \
-    dirmngr openvpn network-manager-openvpn openvpn-systemd-resolved libqt5opengl5 &&
+    dirmngr openvpn network-manager-openvpn openvpn-systemd-resolved libqt5opengl5 \
+    palseaudio pavucontrol &&
 echo " "
 echo "========================================= "
 echo "Additional Non-Free software installed"
@@ -136,6 +137,7 @@ echo "============= "
 echo "System update"
 echo "============= "
 sleep 5
+clear
 echo "========================================= "
 echo "WIFI firmware installed"
 echo "========================================= "
@@ -152,6 +154,8 @@ clear
 #
 #
 MMEDIA () {
+sudo -u $real_user mkdir ~/Projects
+sudo -u $real_user cd ~/Projects
 clear
 echo "============= "
 echo "System update"
@@ -163,15 +167,16 @@ echo "============== "
 sleep 5
 clear
 echo "========================================= "
-echo "Installing multimedia repo"
+echo "Installing Multimedia repo"
 echo "========================================= "
-sleep 5
 echo " "
-echo 'deb http://www.deb-multimedia.org bullseye main non-free' | sudo tee /etc/apt/sources.list.d/dev-multimedia.list
-wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
+sleep 5
+sudo -u $real_user echo 'deb http://www.deb-multimedia.org bullseye main non-free' | tee /etc/apt/sources.list.d/dev-multimedia.list
+sudo -u $real_user wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
 dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
-apt-get -y update
+apt-get update
 apt-get -y upgrade
+apt autoremove
 echo " "
 echo "========================================= "
 echo "Added deb-multimedia.org to repos"
@@ -187,9 +192,28 @@ echo "============= "
 echo "System update"
 echo "============= "
 apt-get update
-aot-get upgrade -y
-echo "============== "
+echo " "
+echo "============= "
 echo "System updated"
+echo "============= "
+sleep 5
+clear
+echo "============== "
+echo "System upgrade"
+echo "============== "
+apt-get update --fix-missing
+apt-get upgrade -y
+apt-get install -f
+echo " "
+echo "============= "
+echo "System upgraded"
+echo "============= "
+sleep 5
+clear
+apt-get autoremove -y
+apt-get clean
+echo "============== "
+echo "APT Clean-up"
 echo "============== "
 sleep 5
 echo "========================================= "
@@ -201,6 +225,8 @@ clear
 #
 #
 YTDLUP () {
+sudo -u $real_user mkdir ~/Projects/
+sudo -u $real_user cd ~/Projects/
 clear
 echo "============= "
 echo "System update"
@@ -228,6 +254,8 @@ clear
 #
 #
 ORACLE () {
+sudo -u $real_user mkdir ~/Projects/
+sudo -u $real_user cd ~/Projects/
 clear
 echo "============= "
 echo "System update"
@@ -245,9 +273,10 @@ echo "========================================= "
 sleep 5
 clear
 echo " "
-sudo add-apt-repository ppa:linuxuprising/java
-sudo apt install oracle-java17-installer --install-recommends
-echo oracle-java17-installer shared/accepted-oracle-license-v1-3 select true | sudo /usr/bin/debconf-set-selections
+sudo -u $real_user wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.deb
+apt install -y ./jdk-17_linux-x64_bin.deb
+rm jdk-17_linux-x64_bin.deb
+update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-17/bin/java 1
 echo " "
 echo "========================================= "
 echo "Enabled systemd-resolved service"
@@ -258,10 +287,13 @@ clear
 #
 #
 BPKERNEL () {
+sudo -u $real_user mkdir ~/Projects/
+sudo -u $real_user cd ~/Projects/
 clear
 echo "============= "
 echo "System update"
 echo "============= "
+sed -i -e '$ i\deb http://ftp.debian.org/debian bullseye-backports main contrib non-free' /etc/apt/sources.list
 apt-get update
 echo "============== "
 echo "System updated"
@@ -290,6 +322,8 @@ clear
 #
 #
 FANCYSHELL () {
+sudo -u $real_user mkdir ~/Projects/
+sudo -u $real_user cd ~/Projects/
 clear
 echo "============= "
 echo "System update"
@@ -301,15 +335,28 @@ echo "============== "
 sleep 5
 clear
 echo "========================================= "
+echo "Installing Powerline Font"
+echo "========================================= "
+apt install fonts-powerline bc -y
+sleep 5
+clear
+echo "========================================= "
+echo "Installing new ls command"
+echo "========================================= "
+sudo -u $real_user wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb
+(sed -i -e 's/ls --color=auto/lsd/' ~/.bashrc)
+dpkg -i lsd_0.20.1_amd64.deb
+echo " "
+echo "========================================= "
+echo "New ls command installed"
+echo "========================================= "
+sleep 10
+clear
+echo "========================================= "
 echo "Installing fancy shell"
 echo "========================================= "
-sleep 5
-mkdir ~/projects/
-cd ~/projects/
-git clone --recursive https://github.com/andresgongora/synth-shell.git
-cd synth-shell/
-chmod +x setup.sh
-echo "i u n Y n n n"| ./setup.sh
+sudo -u $real_user git clone --recursive https://github.com/andresgongora/synth-shell.git
+(cd synth-shell; echo "i u n n Y Y Y"| . setup.sh)
 sleep 5
 echo " "
 echo "========================================= "
@@ -317,25 +364,12 @@ echo "fancy shell installed"
 echo "========================================= "
 sleep 5
 clear
-echo "========================================= "
-echo "Installing new ls command"
-echo "========================================= "
-filename=".bashrc"
-search="ls --color=auto"
-replace="lsd"
-wget -P ~/projects https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd-musl_0.20.1_arm64.deb
-dpkg -i lsd-musl_0.20.1_arm64.deb
-sed -i "s/$search/$replace/" ~/$filename
-echo " "
-echo "========================================= "
-echo "New ls command installed"
-echo "========================================= "
-sleep 3
-clear
 }
 #
 #
 CATCMDBAT () {
+sudo -u $real_user mkdir ~/Projects
+sudo -u $real_user cd ~/Projects
 clear
 echo "============= "
 echo "System update"
@@ -349,9 +383,9 @@ clear
 echo "========================================= "
 echo "Installing new cat command called bat"
 echo "========================================= "
-wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd.deb -P /tmp/
-dpkg -i bat_*.deb
-bat /etc/profile
+sudo -u $real_user wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb
+dpkg -i bat_0.18.3_amd64.deb
+sudo -u $real_user bat /etc/profile
 echo " "
 echo "========================================= "
 echo "New ls command installed"
@@ -362,6 +396,8 @@ clear
 #
 #
 XRTAFONTS () {
+sudo -u $real_user mkdir ~/Projects
+sudo -u $real_user cd ~/Projects
 clear
 echo "============= "
 echo "System update"
@@ -372,17 +408,6 @@ echo "System updated"
 echo "============== "
 sleep 5
 clear
-echo "========================================= "
-echo "Installing Nerd Font"
-echo "========================================= "
-sleep 5
-echo " "
-mkdir ~/Projects/
-cd ~/Projects/
-git clone https://github.com/ryanoasis/nerd-fonts
-cd nerd-fonts
-bash install.sh
-sleep 5
 echo " "
 echo "========================================= "
 echo "Installing Awesome Font"
@@ -393,11 +418,12 @@ echo " "
 echo "========================================= "
 echo "Installing Extra Fonts"
 echo "========================================= "
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
+cd ..
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip
+sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
 unzip Meslo.zip -d /usr/local/share/fonts/
 unzip RobotoMono.zip -d /usr/local/share/fonts/
 unzip SpaceMono.zip -d /usr/local/share/fonts/
@@ -451,21 +477,21 @@ clear
 echo "========================================= "
 echo "Installing Windows Modern System Monitor install"
 echo "========================================= "
-add-apt-repository ppa:camel-neeraj/sysmontask
-apt update
-apt install python3-pip sysmontask
-pip3 install -U psutil -y
+apt-get install python3 python3-pip -y
+sudo -u $real_user git clone https://github.com/KrispyCamel4u/SysMonTask.git
+(cd SysMonTask; sudo python3 setup.py install)
 echo " "
 echo "========================================= "
 echo "Windows Modern System Monitor installed"
 echo "========================================= "
-sleep 3
+sleep 10
 clear
 }
 #
 #
-#
 LXDEDSKINSTA () {
+sudo -u $real_user mkdir ~/Projects
+sudo -u $real_user cd ~/Projects
 clear
 echo "============= "
 echo "System update"
@@ -480,62 +506,33 @@ echo "========================================= "
 echo "Installing LXDE Desktop install"
 echo "========================================= "
 apt-get install -y \
-    slim lightdm iceweasel lxterminal tint2 gsimplecal volumeicon nitrogen lxpanel task-lxde-desktop lxde software-properties-common \
+    slim lightdm lxterminal tint2 gsimplecal volumeicon nitrogen lxpanel task-lxde-desktop lxde software-properties-common \
     net-tools hsetroot qt5-style-plugins ttf-mscorefonts-installer scribus chromium dconf-editor fortune cowsay filezilla calibre \
     numix-gtk-theme greybird-gtk-theme breeze-icon-theme breeze-gtk-theme liferea shotcut aptitude synaptic arc-theme \
-    audacity npm nemo praat gramps pdfchain syncthing git curl wget gdebi htop keepassxc openvpn thunar autossh icedove \
+    audacity npm nemo praat gramps pdfchain syncthing git curl wget gdebi htop keepassxc openvpn thunar autossh \
     vim emacs lxsession-default-apps libatk-adaptor libgail-common gedit gimp brasero libasound2 alsa-utils alsa-oss \
-    alsa-tools-gui vlc libavcodec-extra-53 mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
-    gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 xinit xserver-xorg xorg xserver-xorg-video-all cups-client &&
+    alsa-tools-gui vlc libavcodec-extra58 mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
+    gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 xinit xserver-xorg xorg xserver-xorg-video-all \
+    pulseaudio pavucontrol cups-client &&
 sleep 5
 echo " "
 echo "========================================= "
 echo "Removing unwanted LXDE utils and Apps"
 echo "========================================= "
-apt-get remove \
+apt-get remove -y \
     lxlock light-locker gpicview deluge deluge-common deluge-gtk lxmusic xterm evince \
     evince-common clipit pcmanfm smplayer &&
+apt-get autoremove -y
+sleep 5
 echo " "
 echo "========================================= "
 echo "Installing FireJail"
 echo "========================================= "
 sleep 5
-sudo -u $real_user mkdir ~/Project/
-sudo -u $real_user cd ~/Project/
 sudo -u $real_user wget https://github.com/netblue30/firejail/releases/download/0.9.64.2/firejail_0.9.64.2_1_amd64.deb
 sudo -u $real_user tar -xf firejail_0.9.64.2_1_amd64.deb
 dpkg -i firejail_0.9.64.2_1_amd64.deb
-echo " "
-echo "========================================= "
-echo "Installing Nerd Fonts"
-echo "========================================= "
 sleep 5
-sudo -u $real_user cd ~/projects/
-git clone https://github.com/ryanoasis/nerd-fonts
-sudo -u $real_user cd nerd-fonts
-bash install.sh
-echo " "
-echo "========================================= "
-echo "Installing Aswesome Fonts"
-echo "========================================= "
-apt-get install fonts-font-awesome-y
-echo " "
-echo "========================================= "
-echo "Installing Additional Fonts"
-echo "========================================= "
-sudo -u $real_user mkdir -p ~/projects/fonts/
-sudo -u $real_user cd ~/projects/fonts/
-sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
-sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SpaceMono.zip
-sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Ubuntu.zip
-sudo -u $real_user wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
-sudo -u $real_user mkdir -p /usr/local/share/fonts/
-unzip Meslo.zip -d /usr/local/share/fonts/
-unzip RobotoMono.zip -d /usr/local/share/fonts/
-unzip SpaceMono.zip -d /usr/local/share/fonts/
-unzip Ubuntu.zip -d /usr/local/share/fonts/
-unzip UbuntuMono.zip -d /usr/local/share/fonts/
 echo " "
 echo "========================================= "
 echo "LXDE Desktop + More installed"
@@ -545,9 +542,7 @@ clear
 }
 #
 #
-#
-#
-SLOWFOX () { 
+SLOWFOX () {
 clear
 echo "============= "
 echo "System update"
@@ -562,21 +557,19 @@ echo "========================================= "
 echo "Installing Slow Firefox fix"
 echo "========================================= "
 sleep 5
-clear
 echo " "
 apt install python3 python3-pip mpv firefox-esr rpi-chromium-mods
 python3 -m pip install --user --upgrade youtube-dl
-mkdir ~/projects/
-cd ~/projects/
-wget https://github.com/akiirui/mpv-handler/releases/latest/download/mpv-handler-linux-x64.zip
-unzip -d mpv-handler mpv-handler-linux-x64.zip
-mkdir ~/.local/bin/ #just in case
-mkdir ~/.local/share/applications/ #just in case
-cp mpv-handler/mpv-handler ~/.local/bin/
-cp mpv-handler/mpv-handler.desktop ~/.local/share/applications/
-mkdir ~/.config/mpv-handler
-cp mpv-handler/config.toml ~/.config/mpv-handler/
-clear
+sudo -u $real_user mkdir ~/Projects/
+sudo -u $real_user cd ~/Projects/
+sudo -u $real_user wget https://github.com/akiirui/mpv-handler/releases/latest/download/mpv-handler-linux-x64.zip
+sudo -u $real_user unzip -d mpv-handler mpv-handler-linux-x64.zip
+sudo -u $real_user mkdir ~/.local/bin/ #just in case
+sudo -u $real_user mkdir ~/.local/share/applications/ #just in case
+sudo -u $real_user cp mpv-handler/mpv-handler ~/.local/bin/
+sudo -u $real_user cp mpv-handler/mpv-handler.desktop ~/.local/share/applications/
+sudo -u $real_user mkdir ~/.config/mpv-handler
+sudo -u $real_user cp mpv-handler/config.toml ~/.config/mpv-handler/
 echo " "
 echo "========================================= "
 echo "Slow Firefox fix installed"
@@ -599,22 +592,22 @@ echo "-------------------"
 echo
 echo " (a) Install base Development tools "
 echo " (b) Install Standard Terminal Apps "
-echo " (c) Install Additional software "
+echo " (c) Install Non-Free software "
 echo " (d) Install Broadcom WiFi drivers "
 echo "     -- Reboot Now -- "
-echo " (e) Add deb-multimedia.org (only if needed) "
-echo " (f) Run multimedia upgrade (optional) "
+echo " (e) Add deb-multimedia.org Repo "
+echo " (f) Run System Upgrade "
 echo " (g) Install youtube-dl "
 echo " (h) Install Oracle Java "
 echo " (j) Install newest kernel from backports "
 echo "     -- Reboot Required -- "
 echo " (k) Fancy Shell Install "
-echo " (L) New Cat Commnad called Bat Install "
-echo " (M) Extra Fonts Install "
-echo " (N) Locals Purge to free up more Disk Space "
-echo " (O) LXDE Desktop Install "
-echo " (P) Windows System Monitor Install "
-echo " (Q) Slow Firefox Alternative Install "
+echo " (l) New Cat Commnad called Bat Install "
+echo " (m) Extra Fonts Install "
+echo " (n) Locals Purge to free up more Disk Space "
+echo " (o) LXDE Desktop Install "
+echo " (p) Windows System Monitor Install "
+echo " (q) Slow Firefox Alternative Install "
 echo " "
 echo " (x) Exit "
 echo
@@ -629,7 +622,7 @@ case $choice in
   g|G) YTDLUP;;
   h|H) ORACLE;;
   j|J) BPKERNEL;;
-  j|K) FANCYSHELL;;
+  k|K) FANCYSHELL;;
   l|L) CATCMDBAT;;
   m|M) XRTAFONTS;;
   n|N) LCPURGE;;
