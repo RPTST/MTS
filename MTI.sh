@@ -579,36 +579,6 @@ clear
 }
 #
 #
-VSCODIUM () {
-clear
-echo "============= "
-echo "System update"
-echo "============= "
-apt-get update
-echo "============== "
-echo "System updated"
-echo "============== "
-sleep 5
-clear
-echo "========================================= "
-echo "Installing VSCodium"
-echo "========================================= "
-sleep 5
-echo " "
-(echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" | sudo tee /etc/apt/sources.list.d/atom.list)
-wget https://packagecloud.io/AtomEditor/atom/gpgkey -O atom_gpgkey
-mv atom_signing_key.gpg /etc/apt/trusted.gpg.d/
-apt update
-apt install atom -y
-echo " "
-echo "========================================= "
-echo "VSCodium installed"
-echo "========================================= "
-sleep 3
-clear
-}
-#
-#
 ATOMIDE () {
 clear
 echo "============= "
@@ -625,10 +595,13 @@ echo "Installing Atom Editor"
 echo "========================================= "
 sleep 5
 echo " "
-(echo 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list)
-(wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/vscodium.gpg)
-sudo apt update
-sudo apt install codium -y
+(echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" | sudo tee /etc/apt/sources.list.d/atom.list)
+wget https://packagecloud.io/AtomEditor/atom/gpgkey -O atom_gpgkey
+mv atom_signing_key.gpg /etc/apt/trusted.gpg.d/
+apt update
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4C6E74D6C0A35108
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B75442BBDE9E3B09
+apt install atom -y
 echo " "
 echo "========================================= "
 echo "Atom Editor installed"
@@ -636,6 +609,36 @@ echo "========================================= "
 sleep 3
 clear
 }
+#
+#
+VSCODIUM () {
+clear
+echo "============= "
+echo "System update"
+echo "============= "
+apt-get update
+echo "============== "
+echo "System updated"
+echo "============== "
+sleep 5
+clear
+echo "========================================= "
+echo "Installing VSCodium Editor"
+echo "========================================= "
+sleep 5
+echo " "
+(echo 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list)
+(wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/vscodium.gpg)
+apt update
+apt install codium -y
+echo " "
+echo "========================================= "
+echo "VSCodium Editor installed"
+echo "========================================= "
+sleep 3
+clear
+}
+
 #
 #
 # ---------------------------
