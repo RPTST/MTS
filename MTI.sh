@@ -512,9 +512,9 @@ apt-get install -y \
     numix-gtk-theme greybird-gtk-theme breeze-icon-theme breeze-gtk-theme liferea shotcut aptitude synaptic arc-theme \
     audacity npm nemo praat gramps pdfchain syncthing git curl wget gdebi htop keepassxc openvpn thunar autossh \
     vim emacs lxsession-default-apps libatk-adaptor libgail-common gedit gimp brasero libasound2 alsa-utils alsa-oss \
-    alsa-tools-gui vlc libavcodec-extra58 mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
+    alsa-tools-gui vlc mpv mutter qt5ct timeshift firefox-esr galculator gdisk gnome-disk-utility \
     gnome-screenshot nemo nano papirus-icon-theme nvidia-detect libqt5opengl5 xinit xserver-xorg xorg xserver-xorg-video-all \
-    pulseaudio pavucontrol cups-client abiword libavutil56 libswresample3 &&
+    pulseaudio pavucontrol cups-client abiword &&
 sleep 5
 echo " "
 echo "========================================= "
